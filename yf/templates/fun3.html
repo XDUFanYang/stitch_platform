@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>功能3</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="description" content="This is a website uesd to stitch images!">
+        <meta name="author" content="YF_Fan">
+
+        <!-- Base Css Files -->
+
+        <script src="https://magicbox.bk.tencent.com/static_api/v3/assets/js/jquery-1.10.2.min.js"></script>
+        <link href="/static/css/bootstrap.min.css" rel="stylesheet" />
+
+        <link rel="stylesheet" href="http://i.gtimg.cn/vipstyle/frozenui/2.0.0/css/frozen.css">
+        <link href="/static/css/freestyle.css" rel="stylesheet" type="text/css" />
+                <!-- Extra CSS Libraries End -->
+
+
+
+    </head>
+    <body>
+        <!-- Modal Start -->
+        	<!-- Modal Task Progress -->
+
+<!-- Top Bar Start -->
+<div class="topbar">
+    <!-- Button mobile view to collapse sidebar menu -->
+    <div class="navbar navbar-default" role="navigation" >
+        <div class="container" style="margin-top: 10px;margin-left: 25px">
+            <a href="{% url 'homeUI' %}">功能1</a>|
+            <a href="{% url 'fun2' %}">功能2</a>|
+            <a href="{% url 'fun3' %}"> 功能3</a>|
+            <!--路由的时候检查urls要路由home而不是home.html-->
+            <a href="{% url 'aboutus' %}">关于我们</a>
+        </div>
+    </div>
+</div>
+
+		<!-- Start right content -->
+        <div class="content-page">
+			<!-- ============================================================== -->
+			<!-- Start Content here -->
+			<!-- ============================================================== -->
+            <div class="content">
+            					<!-- Page Heading Start -->
+                 <h1>功能3</h1>
+
+            </div>
+	    <!-- Footer Start -->
+
+        <footer style="margin-button:0;">
+                powered by YF_Fan
+                <div class="footer-links pull-right">
+                	<a >About</a><a >Support</a><a href="#">Help</a><a href="{% url 'aboutus' %}">About Us</a>
+                </div>
+        </footer>
+            <!-- Footer End -->
+        </div>
+       </div>
+	</div>
+
+</body>
+<style>
+	.content-page{
+		margin:20px 5px 20px 5px;
+	}
+    /*样式1*/
+    p{
+        display:inline;
+    }
+    a{
+        color:gray;
+    }
+</style>
+</html>
