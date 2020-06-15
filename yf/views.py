@@ -164,3 +164,90 @@ def uploadtxt(request):
         return render(request, 'picshow.html', {'path': picpath})
 
 
+def replaceZeroes(data):
+    min_nonzero = min(data[np.nonzero(data)])
+    data[data == 0] = min_nonzero
+    return data
+
+
+def MSR(img, scales):
+    weight = 1 / 3.0
+    scales_size = len(scales)
+    h, w = img.shape[:2]
+    log_R = np.zeros((h, w), dtype=np.float32)
+
+    for i in range(scales_size):
+        img = replaceZeroes(img)
+        L_blur = cv2.GaussianBlur(img, (scales[i], scales[i]), 0)
+        L_blur = replaceZeroes(L_blur)
+        dst_Img = cv2.log(img/255.0)
+        dst_Lblur = cv2.log(L_blur/255.0)
+        dst_Ixl = cv2.multiply(dst_Img, dst_Lblur)
+        log_R += weight * cv2.subtract(dst_Img, dst_Ixl)
+
+    dst_R = cv2.normalize(log_R,None, 0, 255, cv2.NORM_MINMAX)
+    log_uint8 = cv2.convertScaleAbs(dst_R)
+    return log_uint8
+
+def uploadtxt1(request):
+    if request.method == 'GET':
+        # img = PictureModel.objects.get(id=18)
+        return render(request, 'homeUI.html')
+    else:
+        # 需要从表单input中，获取上传的文件对象(图片)
+        # pic = request.FILES.get('picture')
+        pic = request.FILES.getlist('picture')
+        #print(pic)
+        if len(pic)!=1:
+            return render(request, 'pagenumerror.html')
+        print(pic[0].name)
+
+        # 1. 创建Model对象，保存图片路径到数据库
+        # (这里先不写)
+        # model = PictureModel()
+        # model.pic_url = pic.name
+        # model.save()
+        # 2. 开始处理图片，将图片写入到指定目录。(/static/media/images/)
+        # 拼接图片路径
+        url0 = settings.MEDIA_ROOT + 'images/' + pic[0].name
+        #url1 = settings.MEDIA_ROOT + 'images/' + pic[1].name
+        with open(url0, 'wb') as f0:
+            # pic.chunks()循环读取图片内容，每次只从本地磁盘读取一部分图片内容，加载到内存中，并将这一部分内容写入到目录下，写完以后，内存清空；下一次再从本地磁盘读取一部分数据放入内存。就是为了节省内存空间。
+            for data in pic[0].chunks():
+                f0.write(data)
+
+        #with open(url1, 'wb') as f1:
+            # pic.chunks()循环读取图片内容，每次只从本地磁盘读取一部分图片内容，加载到内存中，并将这一部分内容写入到目录下，写完以后，内存清空；下一次再从本地磁盘读取一部分数据放入内存。就是为了节省内存空间。
+        #    for data in pic[1].chunks():
+        #        f1.write(data)
+
+        imageA = cv2.imread(url0)
+        #imageB = cv2.imread(url1)
+
+        #imageA = imutils.resize(imageA, width=400)
+        #imageB = imutils.resize(imageB, width=400)
+        # 将图像缝合在一起以创建全 景图
+        #stitcher = Stitcher()
+        #(result, vis) = stitcher.stitch([imageA, imageB], showMatches=True)
+        scales = [15, 101, 301]  # [3,5,9]  #看不出效果有什么差别
+        src_img = cv2.imread(url0)
+        x, y = src_img.shape[0:2]
+        src_img = cv2.resize(src_img, (int(y / 5), int(x / 5)))
+        b_gray, g_gray, r_gray = cv2.split(src_img)
+        b_gray = MSR(b_gray, scales)
+        g_gray = MSR(g_gray, scales)
+        r_gray = MSR(r_gray, scales)
+        result = cv2.merge([b_gray, g_gray, r_gray])
+
+
+        cv2.imwrite('E:/stitch/static/media/images/result1.jpg', result)
+
+        picpath = 'http://127.0.0.1:8000/media/images/result1.jpg'
+
+        #imwrite()路径问题也已经解决
+
+        #return render(request, 'login.html', {'img_href': picpath})
+
+        #return HttpResponse('图片上传成功')
+        return render(request, 'picshow.html', {'path': picpath})
+

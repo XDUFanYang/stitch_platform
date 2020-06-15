@@ -44,9 +44,80 @@
 			<!-- ============================================================== -->
             <div class="content">
             					<!-- Page Heading Start -->
-                 <h1>功能2</h1>
 
-            </div>
+            <div class="content">
+            					<!-- Page Heading Start -->
+				<div class="page-heading">
+            		<h1><i class='fa fa-map-marker'></i> 图像增强</h1>
+            		            	</div>
+            	<!-- Page Heading End-->				<div class="row">
+					<div class="col-md-12 portlets">
+						<div class="widget">
+
+                                <form action="/uploadtxt1/" method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div style="margin-left: 30px;margin-top: 20px;margin-bottom: 20px;align-content: center">
+
+                                        <input stye="position: absolute;
+                                                font-size: 100px;
+                                                right: 0;
+                                                top: 0;
+                                                opacity: 0;
+                                                filter: alpha(opacity=0);
+                                                cursor: pointer" type="file" name="picture" class="aa">
+                                    </div>
+
+                                    <button type="submit" class="ui-btn-lg-nowhole ui-btn-primary">上传</button>
+                                </form>
+
+                            <script>
+                        $('.aa').change(function(e) {
+                            var _URL = window.URL || window.webkitURL;
+                            var file3;
+                            console.log("this.files是:"+this.files);
+                            console.log("this.files[0]是:"+this.files[0]);
+                            console.log("this.files[1]是:"+this.files[1]);
+                            if ((file3 = this.files[0])) {
+                                img3 = new Image();
+                                img3.onload = function() {
+                                    $('.img3').attr('src', this.src);
+                                    console.log(this.width)
+                                };
+                                img3.src = _URL.createObjectURL(file3);
+                                img2path=img3.src;
+                                console.log("img3的路径是"+ img2path);
+                            }
+                            /*
+                            if ((file4 = this.files[1])) {
+                                img4 = new Image();
+                                img4.onload = function() {
+                                    $('.img4').attr('src', this.src);
+                                    console.log(this.width)
+                                };
+                                img4.src = _URL.createObjectURL(file4);
+                                img2path=img4.src;
+                                console.log("img4的路径是"+ img2path);
+                            }
+                            */
+                        })
+                        </script>
+    <script>
+          let img1path = "";
+          let img2path = "";
+    </script>
+                            <div style="text-align:center;margin-top: 20px;margin-bottom: 20px">
+                                <div style="margin:10px 50px 10px 50px;display: inline;">
+                                    <img class="img3" src="" width="200" height="200">
+
+                                </div>
+                            </div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+        </div>
+        </div>
 	    <!-- Footer Start -->
 
         <footer style="margin-button:0;">
