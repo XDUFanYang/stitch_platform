@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>功能2</title>
+        <title>中间处理结果</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <meta name="description" content="This is a website uesd to stitch images!">
         <meta name="author" content="YF_Fan">
@@ -49,16 +49,16 @@
             <div class="content">
             					<!-- Page Heading Start -->
 				<div class="page-heading">
-            		<h1><i class='fa fa-map-marker'></i> 图像增强</h1>
+            		<h1><i class='fa fa-map-marker'></i>请问还需要进一步增强</h1>
             		            	</div>
             	<!-- Page Heading End-->				<div class="row">
 					<div class="col-md-12 portlets">
 						<div class="widget">
 
-                                <form action="/uploadtxt1/" method="post" enctype="multipart/form-data">
+                                <form action="/uploadtxt3/" method="post" enctype="multipart/form-data">
                                     {% csrf_token %}
                                     <div style="margin-left: 30px;margin-top: 20px;margin-bottom: 20px;align-content: center">
-
+                                        
                                         <input stye="position: absolute;
                                                 font-size: 100px;
                                                 right: 0;
@@ -66,6 +66,7 @@
                                                 opacity: 0;
                                                 filter: alpha(opacity=0);
                                                 cursor: pointer" type="file" name="picture" class="aa">
+
                                     </div>
 
                                     <button type="submit" class="ui-btn-lg-nowhole ui-btn-primary">上传</button>
@@ -108,7 +109,7 @@
     </script>
                             <div style="text-align:center;margin-top: 20px;margin-bottom: 20px">
                                 <div style="margin:10px 50px 10px 50px;display: inline;">
-                                    <img class="img3" src="" width="200" height="200">
+                                    <img class="img3" src={{path}} width="200" height="200">
 
                                 </div>
                             </div>

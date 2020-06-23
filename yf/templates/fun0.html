@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>关于我们</title>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>视频剪辑</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <meta name="description" content="This is a website uesd to stitch images!">
         <meta name="author" content="YF_Fan">
@@ -14,13 +14,21 @@
 
         <link rel="stylesheet" href="http://i.gtimg.cn/vipstyle/frozenui/2.0.0/css/frozen.css">
         <link href="/static/css/freestyle.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
+                <!-- Extra CSS Libraries End -->
+
+
+
+    </head>
+    <body>
+        <!-- Modal Start -->
+        	<!-- Modal Task Progress -->
+
+<!-- Top Bar Start -->
 <div class="topbar">
     <!-- Button mobile view to collapse sidebar menu -->
     <div class="navbar navbar-default" role="navigation">
         <div class="container" style="margin-top: 10px;margin-left: 25px">
-            <a  href="{% url 'homeUI' %}">功能1</a>|
+            <a href="{% url 'homeUI' %}">功能1</a>|
             <a href="{% url 'fun2' %}">功能2</a>|
             <a href="{% url 'fun3' %}"> 功能3</a>|
             <a href="{% url 'fun0' %}"> 功能0</a>|
@@ -37,12 +45,42 @@
 			<!-- ============================================================== -->
             <div class="content">
             					<!-- Page Heading Start -->
-                <h1>powered by Yang Fan</h1>
 
-            </div>
+            <div class="content">
+            					<!-- Page Heading Start -->
+				<div class="page-heading">
+            		<h1><i class='fa fa-map-marker'></i>视频截取</h1>
+            		            	</div>
+            	<!-- Page Heading End-->				<div class="row">
+					<div class="col-md-12 portlets">
+						<div class="widget">
+
+                                <form action="/uploadtxt0/" method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div style="margin-left: 30px;margin-top: 20px;margin-bottom: 20px;align-content: center">
+
+                                        <input stye="position: absolute;
+                                                font-size: 100px;
+                                                right: 0;
+                                                top: 0;
+                                                opacity: 0;
+                                                " type="file">
+                                    </div>
+
+                                    <button type="submit" class="ui-btn-lg-nowhole ui-btn-primary">上传</button>
+                                </form>
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+        </div>
+        </div>
 	    <!-- Footer Start -->
 
-        <footer>
+        <footer style="margin-button:0;">
                 powered by YF_Fan
                 <div class="footer-links pull-right">
                 	<a >About</a><a >Support</a><a href="#">Help</a><a href="{% url 'aboutus' %}">About Us</a>
@@ -64,9 +102,6 @@
     }
     a{
         color:gray;
-        text-align: center;
     }
 </style>
-
-</body>
 </html>

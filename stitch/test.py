@@ -29,13 +29,13 @@ def MSR(img, scales):
 
 
 if __name__ == '__main__':
-    img = 'img1.jpg'
+    img = 'image2.jpg'
 
 
     scales = [15,101,301]  # [3,5,9]  #看不出效果有什么差别
     src_img = cv2.imread(img)
     x, y = src_img.shape[0:2]
-    src_img = cv2.resize(src_img, (int(y / 6), int(x / 6)))
+    src_img = cv2.resize(src_img, (int(y / 2), int(x / 2)))
     b_gray, g_gray, r_gray = cv2.split(src_img)
     b_gray = MSR(b_gray, scales)
     g_gray = MSR(g_gray, scales)

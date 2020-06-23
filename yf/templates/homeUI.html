@@ -32,6 +32,7 @@
           <a href="{% url 'homeUI' %}">功能1</a>|
             <a href="{% url 'fun2' %}">功能2</a>|
             <a href="{% url 'fun3' %}"> 功能3</a>|
+            <a href="{% url 'fun0' %}"> 功能0</a>|
             <!--路由的时候检查urls要路由home而不是home.html-->
             <a href="{% url 'aboutus' %}">关于我们</a>
         </div>
@@ -46,7 +47,7 @@
             <div class="content">
             					<!-- Page Heading Start -->
 				<div class="page-heading">
-            		<h1><i class='fa fa-map-marker'></i> 图像拼接</h1>
+            		<h1><i class='fa fa-map-marker'></i>图像拼接</h1>
             		            	</div>
             	<!-- Page Heading End-->				<div class="row">
 					<div class="col-md-12 portlets">
@@ -54,8 +55,8 @@
 
                                 <form action="/uploadtxt/" method="post" enctype="multipart/form-data" >
                                     {% csrf_token %}
+
                                     <div style="margin-left: 30px;margin-top: 20px;margin-bottom: 20px;align-content: center">
-  
                                         <input stye="position: absolute;
                                                 font-size: 100px;
                                                 right: 0;
