@@ -1,6 +1,6 @@
 asgiref==3.2.5
 chardet==3.0.4
-Django==3.0.4
+Django==3.1.6
 docopt==0.6.2
 idna==2.9
 imutils==0.5.3
